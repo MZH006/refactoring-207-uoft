@@ -1,2 +1,7 @@
+19baac0 Task 2.1
+c172738 commiting work as instructed
+39f5d0d commiting work as instructed
+fb6807b commiting work as instructed
+81a2703 Task 1.2
 e700943 Task 1.1
 b79d420 Initial commit
