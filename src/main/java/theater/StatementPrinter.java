@@ -30,20 +30,20 @@ public class StatementPrinter {
         final NumberFormat frmt = NumberFormat.getCurrencyInstance(Locale.US);
 
         for (Performance p : invoice.getPerformances()) {
+            final Play play = getPlay(p);
 
-            int rslt = 0;
-            rslt = getAmount(p);
+            final int rslt = getAmount(p);
 
             // add volume credits
             volumeCredits += Math.max(p.getAudience() - Constants.BASE_VOLUME_CREDIT_THRESHOLD, 0);
             // add extra credit for every five comedy attendees
-            if ("comedy".equals(getPlay(p).getType())) {
+            if ("comedy".equals(play.getType())) {
                 volumeCredits += p.getAudience() / Constants.COMEDY_EXTRA_VOLUME_FACTOR;
             }
 
             // print line for this order
             result.append(String.format("  %s: %s (%s seats)%n",
-                    getPlay(p).getName(), frmt.format(rslt / Constants.PERCENT_FACTOR), p.getAudience()));
+                    play.getName(), frmt.format(rslt / Constants.PERCENT_FACTOR), p.getAudience()));
             totalAmount += rslt;
         }
         result.append(String.format("Amount owed is %s%n", frmt.format(totalAmount / Constants.PERCENT_FACTOR)));
@@ -56,7 +56,7 @@ public class StatementPrinter {
     }
 
     private int getAmount(Performance performance) {
-        int thisAmount;
+        int thisAmount = 0;
         switch (getPlay(performance).getType()) {
             case "tragedy":
                 thisAmount = Constants.TRAGEDY_BASE_AMOUNT;
