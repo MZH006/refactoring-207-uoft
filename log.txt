@@ -1,3 +1,4 @@
+5480ad0 Task 2.1 forgot to submit log.txt
 19baac0 Task 2.1
 c172738 commiting work as instructed
 39f5d0d commiting work as instructed
